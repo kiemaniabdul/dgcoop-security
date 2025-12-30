@@ -1,0 +1,173 @@
+/* ==============================================
+   FORMULAIRE - Style principal
+   ============================================== */
+
+/* Conteneur du formulaire avec bordures arrondies */
+/*.login-pf .card-pf {*/
+/*    border-radius: 12px !important;*/
+/*    background-color: #ffffff !important;*/
+/*    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20) !important;*/
+/*    margin: 0 auto;*/
+/*    margin-bottom: 30px !important;*/
+/*    padding: 0 20px;*/
+/*    max-width: 500px;*/
+/*    border-top: 4px solid;*/
+/*    border-color: var(--pf-global--primary-color--100);*/
+/*}*/
+
+.login-pf .card-pf {
+    border-radius: 12px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20) !important;
+    margin: 0 auto;
+    padding: 10px 40px !important; /* Augmenté de 20px à 30px en haut/bas et 40px gauche/droite */
+    max-width: 500px;
+    border-top: 4px solid;
+    border-color: var(--pf-global--primary-color--100);
+    min-height: 300px; /* Hauteur minimale */
+}
+
+#kc-page-title {
+    margin-top: 10px;
+    margin-bottom: 20px !important;
+    font-size: 24px; /* Optionnel : augmenter la taille du titre */
+}
+
+#kc-header-wrapper {
+    margin-top: 10px;
+    margin-bottom: 20px !important;
+    font-size: 40px; /* Optionnel : augmenter la taille du titre */
+}
+
+/* Wrapper du formulaire */
+#kc-form-wrapper {
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ==============================================
+   COULEURS - Personnalisation
+   ============================================== */
+
+/* Définir vos couleurs primaires ici */
+:root {
+    --pf-global--primary-color--100: #28A745; /* Vert - changez selon vos besoins */
+    --pf-global--primary-color--200: #1E7B34; /* Vert foncé */
+}
+
+/* Bordures des champs de saisie */
+#kc-form-wrapper input[type="text"],
+#kc-form-wrapper input[type="password"],
+#kc-form-wrapper input[type="email"] {
+    border-color: #d2d2d2;
+}
+
+#kc-form-wrapper input:focus {
+    border-color: var(--pf-global--primary-color--100) !important;
+    outline-color: var(--pf-global--primary-color--100) !important;
+}
+
+/* Bouton de connexion */
+#kc-form-buttons button,
+#kc-form-buttons input[type="submit"] {
+    background-color: #28A745FF !important; /* Bleu - changez selon vos besoins */
+    border-color: #007BFF !important;
+    margin-bottom: 10px !important;
+}
+
+#kc-form-buttons button:hover,
+#kc-form-buttons input[type="submit"]:hover {
+    background-color: #0056B3 !important;
+    border-color: #0056B3 !important;
+}
+
+/* ==============================================
+   BACKGROUND ET LOGO
+   ============================================== */
+
+/* Arrière-plan de la page */
+.login-pf body {
+    background-color: #f8f9fa;
+    background-image:
+            linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+            linear-gradient(45deg, rgba(46, 204, 113, 0.1) 50%, transparent 100%);
+    height: 100%;
+}
+
+/* Test avec des couleurs vives et visibles */
+body {
+    background: #E0E0E0 !important; /* Fond gris pour voir le contraste */
+    background-image:
+        /* Cercle rouge en haut à gauche - TRES visible */
+            radial-gradient(circle 400px at 0% 0%, rgba(255, 0, 0, 0.5) 0%, transparent 100%),
+                /* Cercle bleu en bas à droite - TRES visible */
+            radial-gradient(circle 500px at 100% 100%, rgba(0, 0, 255, 0.5) 0%, transparent 100%) !important;
+    min-height: 100vh !important;
+}
+
+.kc-form-login {
+    margin-bottom: 40px;
+}
+
+/* Logo personnalisé (optionnel) */
+/* Essayer d'abord avec chemin relatif, puis avec chemin absolu si nécessaire */
+div.kc-logo-text,
+.kc-logo-text,
+#kc-logo,
+.kc-logo,
+[id*="logo"],
+[class*="logo"] {
+    background-image: url("../img/logo.png") !important;
+    /* Alternative si le chemin relatif ne fonctionne pas, décommentez la ligne suivante et commentez celle du dessus: */
+    /* background-image: url("img/logo.png") !important; */
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important;
+    height: 105px !important;
+    width: 300px !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+div.kc-logo-text span,
+.kc-logo-text span {
+    display: none !important;
+}
+
+/* ==============================================
+   CENTRAGE ET RESPONSIVE
+   ============================================== */
+
+@media (min-width: 768px) {
+    #kc-container-wrapper {
+        position: absolute;
+        width: 100%;
+    }
+}
+
+@media (min-height: 646px) {
+    #kc-container-wrapper {
+        bottom: 12%;
+    }
+}
+
+@media (max-height: 645px) {
+    #kc-container-wrapper {
+        padding-top: 50px;
+        top: 20%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .login-pf-page .card-pf {
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        border-top: 0;
+        box-shadow: 0 0;
+    }
+}
