@@ -58,8 +58,8 @@ deploy:
         cd /opt/dgcoop
         echo '$CI_REGISTRY_PASSWORD' | docker login '$CI_REGISTRY' -u '$CI_REGISTRY_USER' --password-stdin
         sed -i 's|^KEYCLOAK_IMAGE=.*|KEYCLOAK_IMAGE=$NEW_IMAGE|' .env
-        docker compose -f docker-compose.yml -f docker-compose.app.yml pull dgcoop-keycloak
-        docker compose -f docker-compose.yml -f docker-compose.app.yml up -d dgcoop-keycloak
+        docker compose -f docker-compose.yml -f docker-compose.keycloak.yml pull dgcoop-keycloak
+        docker compose -f docker-compose.yml -f docker-compose.keycloak.yml up -d dgcoop-keycloak
         docker image prune -f
         docker logout '$CI_REGISTRY'
         echo '✓ Keycloak déployé : $NEW_IMAGE'
