@@ -1,0 +1,10 @@
+# Keycloak server binaries — installés dans l'image Docker officielle,
+# inutiles dans ce repo (seul themes/ est copié par le Dockerfile).
+/bin/
+/lib/
+/data/
+/conf/
+
+# Logs
+*.log
+nohup.out
