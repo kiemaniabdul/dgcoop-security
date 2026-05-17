@@ -1,7 +1,7 @@
 <#import "footer.ftl" as loginFooter>
 <#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false>
 <!DOCTYPE html>
-<html class="${properties.kcHtmlClass!}" lang="${(locale.currentLanguageTag)!'fr'}"<#if realm.internationalizationEnabled> dir="${(locale.rtl)?then('rtl','ltr')}"</#if>>
+<html class="${properties.kcHtmlClass!}" lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -52,19 +52,6 @@
             checkAuthSession("${authenticationSession.authSessionIdHash}");
         </script>
     </#if>
-    <#-- Français par défaut : sans cookie de langue, Keycloak suit souvent Accept-Language (en). -->
-    <script>
-      (function () {
-        if (document.cookie.split(';').some(function (c) { return c.trim().indexOf('KEYCLOAK_LOCALE=') === 0; })) {
-          return;
-        }
-        var url = new URL(window.location.href);
-        if (!url.searchParams.get('kc_locale')) {
-          url.searchParams.set('kc_locale', 'fr');
-          window.location.replace(url.toString());
-        }
-      })();
-    </script>
 </head>
 
 <body class="${properties.kcBodyClass!} dgcoop-login-body" data-page-id="login-${pageId}">
@@ -87,24 +74,6 @@
     <main class="dgcoop-login-main ${properties.kcLoginClass!}">
         <div class="${properties.kcFormCardClass!} dgcoop-login-card">
             <header class="${properties.kcFormHeaderClass!} dgcoop-card-header">
-                <#if realm.internationalizationEnabled && locale.supported?size gt 1>
-                    <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
-                        <div id="kc-locale-wrapper" class="${properties.kcLocaleWrapperClass!}">
-                            <div id="kc-locale-dropdown" class="menu-button-links ${properties.kcLocaleDropDownClass!}">
-                                <button tabindex="1" id="kc-current-locale-link" aria-label="${msg("languages")}" aria-haspopup="true" aria-expanded="false" aria-controls="language-switch1">${locale.current}</button>
-                                <ul role="menu" tabindex="-1" aria-labelledby="kc-current-locale-link" id="language-switch1" class="${properties.kcLocaleListClass!}">
-                                    <#assign i = 1>
-                                    <#list locale.supported as l>
-                                        <li class="${properties.kcLocaleListItemClass!}" role="none">
-                                            <a role="menuitem" id="language-${i}" class="${properties.kcLocaleItemClass!}" href="${l.url}">${l.label}</a>
-                                        </li>
-                                        <#assign i++>
-                                    </#list>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </#if>
                 <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                     <h1 id="kc-page-title" class="dgcoop-page-title"><#nested "header"></h1>
                     <p class="dgcoop-welcome">${msg("loginWelcomeMessage")}</p>
