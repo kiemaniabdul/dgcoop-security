@@ -63,10 +63,10 @@
             <#else>
                 <div class="dgcoop-logo-text">DGCoop</div>
             </#if>
-            <p class="dgcoop-brand-tagline">${msg("brandTagline")}</p>
-            <p class="dgcoop-brand-sub">${msg("brandSubtitle")}</p>
+            <p class="dgcoop-brand-tagline">Système intégré de suivi et d’évaluation</p>
+            <p class="dgcoop-brand-sub">Direction générale de la coopération (DGCooP) — République du Burkina Faso</p>
             <footer class="dgcoop-brand-footer">
-                <span>${msg("brandFooter")}</span>
+                <span>© DGCooP — Accès réservé aux utilisateurs habilités</span>
             </footer>
         </div>
     </aside>
@@ -76,7 +76,7 @@
             <header class="${properties.kcFormHeaderClass!} dgcoop-card-header">
                 <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
                     <h1 id="kc-page-title" class="dgcoop-page-title"><#nested "header"></h1>
-                    <p class="dgcoop-welcome">${msg("loginWelcomeMessage")}</p>
+                    <p class="dgcoop-welcome">Connectez-vous avec votre compte professionnel pour accéder à l’application.</p>
                 <#else>
                     <#nested "show-username">
                     <div id="kc-username" class="${properties.kcFormGroupClass!}">
