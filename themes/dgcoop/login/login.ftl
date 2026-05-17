@@ -2,13 +2,7 @@
 <#import "passkeys.ftl" as passkeys>
 <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
     <#if section = "header">
-        <#if properties.logo?has_content>
-            <div class="kc-logo-text">
-                <img src="${url.resourcesPath}/${properties.logo}" alt="${msg("loginAccountTitle")}" style="max-width: 300px; max-height: 105px; display: block; margin: 0 auto;" />
-            </div>
-        <#else>
-            ${msg("loginAccountTitle")}
-        </#if>
+        ${msg("loginAccountTitle")}
     <#elseif section = "form">
         <div id="kc-form">
           <div id="kc-form-wrapper">
@@ -107,7 +101,7 @@
                     <#list social.providers as p>
                         <li>
                             <a data-once-link data-disabled-class="${properties.kcFormSocialAccountListButtonDisabledClass!}" id="social-${p.alias}"
-                                    class="${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialGridItem!}</#if>"
+                                    class="${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
                                     type="button" href="${p.loginUrl}">
                                 <#if p.iconClasses?has_content>
                                     <i class="${properties.kcCommonLogoIdP!} ${p.iconClasses!}" aria-hidden="true"></i>
@@ -124,4 +118,3 @@
     </#if>
 
 </@layout.registrationLayout>
-

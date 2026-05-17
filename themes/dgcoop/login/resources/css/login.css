@@ -1,173 +1,273 @@
-/* ==============================================
-   FORMULAIRE - Style principal
-   ============================================== */
+/* DGCoop — thème connexion Keycloak (aligné frontend #04278e) */
 
-/* Conteneur du formulaire avec bordures arrondies */
-/*.login-pf .card-pf {*/
-/*    border-radius: 12px !important;*/
-/*    background-color: #ffffff !important;*/
-/*    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20) !important;*/
-/*    margin: 0 auto;*/
-/*    margin-bottom: 30px !important;*/
-/*    padding: 0 20px;*/
-/*    max-width: 500px;*/
-/*    border-top: 4px solid;*/
-/*    border-color: var(--pf-global--primary-color--100);*/
-/*}*/
-
-.login-pf .card-pf {
-    border-radius: 12px !important;
-    background-color: #ffffff !important;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.20) !important;
-    margin: 0 auto;
-    padding: 10px 40px !important; /* Augmenté de 20px à 30px en haut/bas et 40px gauche/droite */
-    max-width: 500px;
-    border-top: 4px solid;
-    border-color: var(--pf-global--primary-color--100);
-    min-height: 300px; /* Hauteur minimale */
-}
-
-#kc-page-title {
-    margin-top: 10px;
-    margin-bottom: 20px !important;
-    font-size: 24px; /* Optionnel : augmenter la taille du titre */
-}
-
-#kc-header-wrapper {
-    margin-top: 10px;
-    margin-bottom: 20px !important;
-    font-size: 40px; /* Optionnel : augmenter la taille du titre */
-}
-
-/* Wrapper du formulaire */
-#kc-form-wrapper {
-    border-radius: 8px;
-    background-color: #f7f7f7;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-/* ==============================================
-   COULEURS - Personnalisation
-   ============================================== */
-
-/* Définir vos couleurs primaires ici */
 :root {
-    --pf-global--primary-color--100: #28A745; /* Vert - changez selon vos besoins */
-    --pf-global--primary-color--200: #1E7B34; /* Vert foncé */
+    --dgcoop-primary: #04278e;
+    --dgcoop-primary-dark: #031d6b;
+    --dgcoop-primary-light: #e3f2fd;
+    --dgcoop-accent: #70ad47;
+    --dgcoop-text: #1a1a2e;
+    --dgcoop-text-muted: #5c6b7a;
+    --dgcoop-border: #d8dee9;
+    --dgcoop-card-shadow: 0 12px 40px rgba(4, 39, 142, 0.12);
+    --dgcoop-radius: 12px;
+    --pf-global--primary-color--100: var(--dgcoop-primary);
+    --pf-global--primary-color--200: var(--dgcoop-primary-dark);
 }
 
-/* Bordures des champs de saisie */
-#kc-form-wrapper input[type="text"],
-#kc-form-wrapper input[type="password"],
-#kc-form-wrapper input[type="email"] {
-    border-color: #d2d2d2;
-}
-
-#kc-form-wrapper input:focus {
-    border-color: var(--pf-global--primary-color--100) !important;
-    outline-color: var(--pf-global--primary-color--100) !important;
-}
-
-/* Bouton de connexion */
-#kc-form-buttons button,
-#kc-form-buttons input[type="submit"] {
-    background-color: #28A745FF !important; /* Bleu - changez selon vos besoins */
-    border-color: #007BFF !important;
-    margin-bottom: 10px !important;
-}
-
-#kc-form-buttons button:hover,
-#kc-form-buttons input[type="submit"]:hover {
-    background-color: #0056B3 !important;
-    border-color: #0056B3 !important;
-}
-
-/* ==============================================
-   BACKGROUND ET LOGO
-   ============================================== */
-
-/* Arrière-plan de la page */
-.login-pf body {
-    background-color: #f8f9fa;
+/* Reset layout Keycloak par défaut */
+.login-pf body,
+body.dgcoop-login-body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--dgcoop-primary-light) !important;
     background-image:
-            linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-            linear-gradient(45deg, rgba(46, 204, 113, 0.1) 50%, transparent 100%);
-    height: 100%;
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(4, 39, 142, 0.08), transparent),
+        radial-gradient(ellipse 60% 40% at 90% 100%, rgba(112, 173, 71, 0.1), transparent) !important;
 }
 
-/* Test avec des couleurs vives et visibles */
-body {
-    background: #E0E0E0 !important; /* Fond gris pour voir le contraste */
-    background-image:
-        /* Cercle rouge en haut à gauche - TRES visible */
-            radial-gradient(circle 400px at 0% 0%, rgba(255, 0, 0, 0.5) 0%, transparent 100%),
-                /* Cercle bleu en bas à droite - TRES visible */
-            radial-gradient(circle 500px at 100% 100%, rgba(0, 0, 255, 0.5) 0%, transparent 100%) !important;
-    min-height: 100vh !important;
+.login-pf-page,
+.dgcoop-login-pf-page {
+    background: transparent !important;
+    padding: 0 !important;
 }
 
-.kc-form-login {
-    margin-bottom: 40px;
-}
-
-/* Logo personnalisé (optionnel) */
-/* Essayer d'abord avec chemin relatif, puis avec chemin absolu si nécessaire */
-div.kc-logo-text,
-.kc-logo-text,
-#kc-logo,
-.kc-logo,
-[id*="logo"],
-[class*="logo"] {
-    background-image: url("../img/logo.png") !important;
-    /* Alternative si le chemin relatif ne fonctionne pas, décommentez la ligne suivante et commentez celle du dessus: */
-    /* background-image: url("img/logo.png") !important; */
-    background-repeat: no-repeat !important;
-    background-size: contain !important;
-    background-position: center !important;
-    height: 105px !important;
-    width: 300px !important;
-    margin: 0 auto !important;
-    display: block !important;
-}
-
-div.kc-logo-text span,
-.kc-logo-text span {
+#kc-header,
+#kc-header-wrapper {
     display: none !important;
 }
 
-/* ==============================================
-   CENTRAGE ET RESPONSIVE
-   ============================================== */
-
-@media (min-width: 768px) {
-    #kc-container-wrapper {
-        position: absolute;
-        width: 100%;
-    }
+/* Shell 2 colonnes */
+.dgcoop-login-shell {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
 }
 
-@media (min-height: 646px) {
-    #kc-container-wrapper {
-        bottom: 12%;
-    }
+.dgcoop-brand-panel {
+    display: none;
+    flex: 0 0 42%;
+    max-width: 520px;
+    background: linear-gradient(160deg, var(--dgcoop-primary) 0%, var(--dgcoop-primary-dark) 55%, #02124a 100%);
+    color: #fff;
+    padding: 3rem 2.5rem;
+    box-sizing: border-box;
 }
 
-@media (max-height: 645px) {
-    #kc-container-wrapper {
-        padding-top: 50px;
-        top: 20%;
+.dgcoop-brand-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 6rem);
+    justify-content: center;
+}
+
+.dgcoop-logo {
+    max-width: 220px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.dgcoop-logo-text {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+}
+
+.dgcoop-brand-tagline {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 0.75rem;
+}
+
+.dgcoop-brand-sub {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.88;
+    margin: 0;
+    max-width: 28ch;
+}
+
+.dgcoop-brand-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    font-size: 0.8rem;
+    opacity: 0.65;
+}
+
+.dgcoop-login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.dgcoop-login-card.card-pf {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 !important;
+    padding: 2rem 2.25rem !important;
+    border: 1px solid var(--dgcoop-border);
+    border-radius: var(--dgcoop-radius) !important;
+    border-top: 4px solid var(--dgcoop-primary) !important;
+    box-shadow: var(--dgcoop-card-shadow) !important;
+    background: #fff !important;
+}
+
+.dgcoop-card-header {
+    margin-bottom: 0.5rem;
+    padding: 0 !important;
+}
+
+.dgcoop-page-title,
+#kc-page-title {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: var(--dgcoop-text) !important;
+    margin: 0 0 0.35rem !important;
+    text-align: left !important;
+}
+
+.dgcoop-welcome {
+    color: var(--dgcoop-text-muted);
+    font-size: 0.9rem;
+    margin: 0 0 1.25rem;
+    line-height: 1.45;
+}
+
+/* Supprimer le double cadre gris */
+#kc-form-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.kc-logo-text img {
+    display: none !important;
+}
+
+/* Champs */
+#kc-form-login .form-group {
+    margin-bottom: 1.1rem;
+}
+
+#kc-form-login label,
+.pf-c-form__label-text {
+    font-weight: 600 !important;
+    color: var(--dgcoop-text) !important;
+    font-size: 0.875rem !important;
+}
+
+#kc-form-login input[type="text"],
+#kc-form-login input[type="password"],
+#kc-form-login input[type="email"],
+.pf-c-form-control {
+    border-radius: 8px !important;
+    border: 1px solid var(--dgcoop-border) !important;
+    padding: 0.65rem 0.85rem !important;
+    font-size: 1rem !important;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+#kc-form-login input:focus,
+.pf-c-form-control:focus {
+    border-color: var(--dgcoop-primary) !important;
+    box-shadow: 0 0 0 3px rgba(4, 39, 142, 0.15) !important;
+    outline: none !important;
+}
+
+/* Options */
+#kc-form-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+#kc-form-options a {
+    color: var(--dgcoop-primary) !important;
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+#kc-form-options a:hover {
+    text-decoration: underline;
+}
+
+/* Bouton connexion */
+#kc-login,
+#kc-form-buttons input[type="submit"],
+.pf-c-button.pf-m-primary {
+    width: 100% !important;
+    background: var(--dgcoop-primary) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    transition: background 0.15s;
+}
+
+#kc-login:hover,
+#kc-form-buttons input[type="submit"]:hover {
+    background: var(--dgcoop-primary-dark) !important;
+}
+
+#kc-login:focus,
+#kc-form-buttons input[type="submit"]:focus {
+    box-shadow: 0 0 0 3px rgba(4, 39, 142, 0.25) !important;
+}
+
+/* Alertes */
+.dgcoop-alert,
+.pf-c-alert {
+    border-radius: 8px !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Footer Keycloak */
+#kc-login-footer,
+footer.pf-c-login__main-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--dgcoop-text-muted);
+}
+
+/* Locale */
+#kc-locale {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.dgcoop-login-card {
+    position: relative;
+}
+
+/* Desktop : panneau gauche */
+@media (min-width: 992px) {
+    .dgcoop-brand-panel {
+        display: flex;
     }
 }
 
 /* Mobile */
-@media (max-width: 767px) {
-    .login-pf-page .card-pf {
-        max-width: none;
-        margin-left: 0;
-        margin-right: 0;
-        border-top: 0;
-        box-shadow: 0 0;
+@media (max-width: 991px) {
+    .dgcoop-login-card.card-pf {
+        padding: 1.5rem !important;
+        border-top-width: 3px !important;
+        box-shadow: 0 4px 20px rgba(4, 39, 142, 0.08) !important;
+    }
+
+    .dgcoop-page-title {
+        font-size: 1.25rem !important;
     }
 }
