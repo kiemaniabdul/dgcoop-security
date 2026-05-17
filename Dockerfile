@@ -5,9 +5,13 @@ FROM quay.io/keycloak/keycloak:26.4.7 AS builder
 
 ENV KC_DB=postgres
 ENV KC_HTTP_ENABLED=true
+ENV KC_HTTP_PORT=8081
+ENV KC_HTTP_MANAGEMENT_PORT=9090
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
 ENV KC_HTTP_MANAGEMENT_ENABLED=true
+# Obligatoire au build pour start --optimized derrière Nginx (sinon redirects :8081)
+ENV KC_PROXY_HEADERS=xforwarded
 
 RUN /opt/keycloak/bin/kc.sh build
 
