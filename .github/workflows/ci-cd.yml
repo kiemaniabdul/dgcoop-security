@@ -112,8 +112,8 @@ jobs:
 
             sed -i "s|^KEYCLOAK_IMAGE=.*|KEYCLOAK_IMAGE=$NEW_IMAGE|" .env
 
-            docker compose -f docker-compose.yml -f docker-compose.keycloak.yml pull dgcoop-keycloak
-            docker compose -f docker-compose.yml -f docker-compose.keycloak.yml up -d dgcoop-keycloak
+            docker compose -f docker-compose.postgres.yml -f docker-compose.keycloak.yml pull dgcoop-keycloak
+            docker compose -f docker-compose.postgres.yml -f docker-compose.keycloak.yml up -d dgcoop-keycloak
 
             # Locale FR (thème dgcoop) — même logique que scripts/fix-keycloak-locale-fr.sh (dgcoop-infra)
             if docker ps --format '{{.Names}}' | grep -q '^dgcoop_keycloak$'; then
