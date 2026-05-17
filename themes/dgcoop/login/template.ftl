@@ -1,7 +1,7 @@
 <#import "footer.ftl" as loginFooter>
 <#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true displayRequiredFields=false>
 <!DOCTYPE html>
-<html class="${properties.kcHtmlClass!}" lang="${lang}"<#if realm.internationalizationEnabled> dir="${(locale.rtl)?then('rtl','ltr')}"</#if>>
+<html class="${properties.kcHtmlClass!}" lang="${(locale.currentLanguageTag)!'fr'}"<#if realm.internationalizationEnabled> dir="${(locale.rtl)?then('rtl','ltr')}"</#if>>
 
 <head>
     <meta charset="utf-8">
@@ -52,6 +52,19 @@
             checkAuthSession("${authenticationSession.authSessionIdHash}");
         </script>
     </#if>
+    <#-- Français par défaut : sans cookie de langue, Keycloak suit souvent Accept-Language (en). -->
+    <script>
+      (function () {
+        if (document.cookie.split(';').some(function (c) { return c.trim().indexOf('KEYCLOAK_LOCALE=') === 0; })) {
+          return;
+        }
+        var url = new URL(window.location.href);
+        if (!url.searchParams.get('kc_locale')) {
+          url.searchParams.set('kc_locale', 'fr');
+          window.location.replace(url.toString());
+        }
+      })();
+    </script>
 </head>
 
 <body class="${properties.kcBodyClass!} dgcoop-login-body" data-page-id="login-${pageId}">
