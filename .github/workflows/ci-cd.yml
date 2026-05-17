@@ -10,9 +10,6 @@ on:
   pull_request:
     branches: [main, dev]
 
-env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/dgcoop-security
-
 jobs:
   build-and-push:
     name: Build & Push
@@ -31,6 +28,12 @@ jobs:
         id: sha
         run: echo "short=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
+      - name: Référentiel GHCR (minuscules)
+        id: ghcr
+        run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "image=ghcr.io/${OWNER}/dgcoop-security" >> $GITHUB_OUTPUT
+
       - name: Login GHCR
         if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
@@ -46,7 +49,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.IMAGE }}
+          images: ${{ steps.ghcr.outputs.image }}
           tags: |
             type=sha,prefix=sha-
             type=ref,event=branch
@@ -83,12 +86,18 @@ jobs:
           target: /opt/dgcoop/scripts
           strip_components: 1
 
+      - name: Image à déployer
+        id: ghcr
+        run: |
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          echo "new_image=ghcr.io/${OWNER}/dgcoop-security:sha-${{ needs.build-and-push.outputs.short-sha }}" >> $GITHUB_OUTPUT
+
       - name: Déploiement via SSH
         uses: appleboy/ssh-action@v1
         env:
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_ACTOR: ${{ github.actor }}
-          NEW_IMAGE: ghcr.io/${{ github.repository_owner }}/dgcoop-security:sha-${{ needs.build-and-push.outputs.short-sha }}
+          NEW_IMAGE: ${{ steps.ghcr.outputs.new_image }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
