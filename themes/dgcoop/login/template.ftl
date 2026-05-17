@@ -56,15 +56,20 @@
 
 <body class="${properties.kcBodyClass!} dgcoop-login-body" data-page-id="login-${pageId}">
 <div class="dgcoop-login-shell">
-    <aside class="dgcoop-brand-panel">
+        <aside class="dgcoop-brand-panel">
         <div class="dgcoop-brand-inner">
+            <div class="dgcoop-brand-top">
             <#if properties.logo?has_content>
                 <img class="dgcoop-logo" src="${url.resourcesPath}/${properties.logo}" alt="DGCoop" />
             <#else>
                 <div class="dgcoop-logo-text">DGCoop</div>
             </#if>
-            <p class="dgcoop-brand-tagline">Système intégré de suivi et d’évaluation</p>
-            <p class="dgcoop-brand-sub">Direction générale de la coopération (DGCooP) — République du Burkina Faso</p>
+            </div>
+            <div class="dgcoop-brand-copy">
+                <p class="dgcoop-brand-tagline">Système intégré de suivi et d’évaluation</p>
+                <p class="dgcoop-brand-sub">Direction générale de la coopération (DGCooP)</p>
+                <p class="dgcoop-brand-country">Burkina Faso</p>
+            </div>
             <footer class="dgcoop-brand-footer">
                 <span>© DGCooP — Accès réservé aux utilisateurs habilités</span>
             </footer>

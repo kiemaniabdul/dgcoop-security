@@ -60,6 +60,22 @@ deploy:
         sed -i 's|^KEYCLOAK_IMAGE=.*|KEYCLOAK_IMAGE=$NEW_IMAGE|' .env
         docker compose -f docker-compose.yml -f docker-compose.keycloak.yml pull dgcoop-keycloak
         docker compose -f docker-compose.yml -f docker-compose.keycloak.yml up -d dgcoop-keycloak
+        if docker ps --format '{{.Names}}' | grep -q '^dgcoop_keycloak$'; then
+          admin_pass=\$(grep '^KEYCLOAK_ADMIN_PASSWORD=' .env | cut -d= -f2- | tr -d '\r' || true)
+          if [ -n \"\$admin_pass\" ]; then
+            docker exec dgcoop_keycloak /opt/keycloak/bin/kcadm.sh config credentials \
+              --server http://localhost:8081 --realm master \
+              --user \"\${KEYCLOAK_ADMIN_USER:-admin}\" --password \"\$admin_pass\" >/dev/null 2>&1 || true
+            docker exec dgcoop_keycloak /opt/keycloak/bin/kcadm.sh update realms/sisegpc \
+              -s internationalizationEnabled=false \
+              -s 'supportedLocales=[\"fr\"]' \
+              -s defaultLocale=fr >/dev/null 2>&1 || true
+            echo '→ Realm sisegpc : locale fr'
+          fi
+        fi
+        if [ -x scripts/fix-keycloak-locale-fr.sh ]; then
+          bash scripts/fix-keycloak-locale-fr.sh || true
+        fi
         docker image prune -f
         docker logout '$CI_REGISTRY'
         echo '✓ Keycloak déployé : $NEW_IMAGE'

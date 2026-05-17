@@ -46,54 +46,84 @@ body.dgcoop-login-body {
 
 .dgcoop-brand-panel {
     display: none;
-    flex: 0 0 42%;
-    max-width: 520px;
-    background: linear-gradient(160deg, var(--dgcoop-primary) 0%, var(--dgcoop-primary-dark) 55%, #02124a 100%);
+    flex: 0 0 44%;
+    max-width: 580px;
+    background: linear-gradient(165deg, var(--dgcoop-primary) 0%, var(--dgcoop-primary-dark) 50%, #02124a 100%);
     color: #fff;
-    padding: 3rem 2.5rem;
+    padding: clamp(2rem, 4vh, 3.5rem) clamp(2rem, 3.5vw, 3.25rem);
     box-sizing: border-box;
 }
 
 .dgcoop-brand-inner {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 6rem);
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+    min-height: 100%;
+}
+
+.dgcoop-brand-top {
+    flex-shrink: 0;
+}
+
+.dgcoop-brand-copy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .dgcoop-logo {
-    max-width: 220px;
+    width: min(100%, 240px);
     height: auto;
-    margin-bottom: 2rem;
+    margin: 0;
 }
 
 .dgcoop-logo-text {
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 2rem;
+    margin: 0;
 }
 
 .dgcoop-brand-tagline {
-    font-size: 1.35rem;
+    font-size: clamp(1.2rem, 2.1vw, 1.6rem);
     font-weight: 600;
-    line-height: 1.35;
-    margin: 0 0 0.75rem;
+    line-height: 1.4;
+    margin: 0;
+    max-width: 22em;
 }
 
 .dgcoop-brand-sub {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    opacity: 0.88;
+    font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+    line-height: 1.55;
+    opacity: 0.92;
     margin: 0;
-    max-width: 28ch;
+    max-width: 26em;
+}
+
+.dgcoop-brand-country {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0.25rem 0 0;
+    opacity: 0.95;
 }
 
 .dgcoop-brand-footer {
-    margin-top: auto;
-    padding-top: 2rem;
+    flex-shrink: 0;
+    margin-top: 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
     font-size: 0.8rem;
-    opacity: 0.65;
+    line-height: 1.45;
+    opacity: 0.7;
+    max-width: 26em;
 }
 
 .dgcoop-login-main {
@@ -256,6 +286,7 @@ footer.pf-c-login__main-footer {
 @media (min-width: 992px) {
     .dgcoop-brand-panel {
         display: flex;
+        flex-direction: column;
     }
 }
 
