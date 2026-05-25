@@ -82,7 +82,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
-          source: "scripts/fix-keycloak-locale-fr.sh"
+          source: "scripts/fix-keycloak-locale-fr.sh,scripts/init-directions.sh"
           target: /opt/dgcoop/scripts
           strip_components: 1
 
@@ -132,6 +132,10 @@ jobs:
 
             if [[ -x scripts/fix-keycloak-locale-fr.sh ]]; then
               bash scripts/fix-keycloak-locale-fr.sh || true
+            fi
+
+            if [[ -x scripts/init-directions.sh ]]; then
+              bash scripts/init-directions.sh || true
             fi
 
             docker image prune -f

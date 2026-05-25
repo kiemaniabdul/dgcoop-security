@@ -76,6 +76,9 @@ deploy:
         if [ -x scripts/fix-keycloak-locale-fr.sh ]; then
           bash scripts/fix-keycloak-locale-fr.sh || true
         fi
+        if [ -x scripts/init-directions.sh ]; then
+          bash scripts/init-directions.sh || true
+        fi
         docker image prune -f
         docker logout '$CI_REGISTRY'
         echo '✓ Keycloak déployé : $NEW_IMAGE'
