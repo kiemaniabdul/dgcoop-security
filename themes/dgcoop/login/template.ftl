@@ -60,7 +60,7 @@
         <div class="dgcoop-brand-inner">
             <div class="dgcoop-brand-top">
             <#if properties.logo?has_content>
-                <img class="dgcoop-logo" src="${url.resourcesPath}/${properties.logo}" alt="DGCoop" />
+                <img class="dgcoop-logo" src="${url.resourcesPath}/${properties.logo}" alt="DCIS" />
             <#else>
                 <div class="dgcoop-logo-text">DGCoop</div>
             </#if>
