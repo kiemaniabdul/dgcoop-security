@@ -1,4 +1,4 @@
-# Directions SISEGPC — Groupes Keycloak
+# Directions DCIS — Groupes Keycloak
 
 ## Quand et comment exécuter le script
 

@@ -66,7 +66,7 @@
             </#if>
             </div>
             <div class="dgcoop-brand-copy">
-                <p class="dgcoop-brand-tagline">Système intégré de suivi et d’évaluation</p>
+                <p class="dgcoop-brand-tagline">DCIS — Development Cooperation Information System</p>
                 <p class="dgcoop-brand-sub">Direction générale de la coopération (DGCooP)</p>
                 <p class="dgcoop-brand-country">Burkina Faso</p>
             </div>
